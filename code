@@ -1,19 +1,40 @@
+/* This code is generated for Conducting elect between 4 People.
+Author @bhupeshchauhanz */
 #include <stdio.h>
+#include <string.h>
 
-#define CANDIDATE1 "Bhupesh Chauhan"
-#define CANDIDATE2 "Charu Lata"
-#define CANDIDATE3 "Prerit Pal"
-#define CANDIDATE4 "Palak Bhutra"
+#define MAX_CANDIDATE_NAME_LENGTH 50
+
+char candidate1[MAX_CANDIDATE_NAME_LENGTH], candidate2[MAX_CANDIDATE_NAME_LENGTH];
+char candidate3[MAX_CANDIDATE_NAME_LENGTH], candidate4[MAX_CANDIDATE_NAME_LENGTH];
 
 int votesCount1 = 0, votesCount2 = 0, votesCount3 = 0, votesCount4 = 0, spoiledtvotes = 0;
+
+void setCandidateNames() {
+    printf("Enter the name of Candidate 1: ");
+    fgets(candidate1, MAX_CANDIDATE_NAME_LENGTH, stdin);
+    candidate1[strcspn(candidate1, "\n")] = 0;  // Remove trailing newline
+
+    printf("Enter the name of Candidate 2: ");
+    fgets(candidate2, MAX_CANDIDATE_NAME_LENGTH, stdin);
+    candidate2[strcspn(candidate2, "\n")] = 0;  // Remove trailing newline
+
+    printf("Enter the name of Candidate 3: ");
+    fgets(candidate3, MAX_CANDIDATE_NAME_LENGTH, stdin);
+    candidate3[strcspn(candidate3, "\n")] = 0;  // Remove trailing newline
+
+    printf("Enter the name of Candidate 4: ");
+    fgets(candidate4, MAX_CANDIDATE_NAME_LENGTH, stdin);
+    candidate4[strcspn(candidate4, "\n")] = 0;  // Remove trailing newline
+}
 
 void castVote() {
     int choice;    
     printf("\n\n ### Please choose your Candidate ###\n");
-    printf("\n 1. %s", CANDIDATE1);
-    printf("\n 2. %s", CANDIDATE2);
-    printf("\n 3. %s", CANDIDATE3);
-    printf("\n 4. %s", CANDIDATE4);
+    printf("\n 1. %s", candidate1);
+    printf("\n 2. %s", candidate2);
+    printf("\n 3. %s", candidate3);
+    printf("\n 4. %s", candidate4);
     printf("\n 5. %s", "None of These");
 
     printf("\n\n Input your choice (1 - 5) : ");
@@ -32,10 +53,10 @@ void castVote() {
 
 void votesCount() {
     printf("\n\n ##### Voting Statistics #####");
-    printf("\n %s - %d", CANDIDATE1, votesCount1);
-    printf("\n %s - %d", CANDIDATE2, votesCount2);
-    printf("\n %s - %d", CANDIDATE3, votesCount3);
-    printf("\n %s - %d", CANDIDATE4, votesCount4);
+    printf("\n %s - %d", candidate1, votesCount1);
+    printf("\n %s - %d", candidate2, votesCount2);
+    printf("\n %s - %d", candidate3, votesCount3);
+    printf("\n %s - %d", candidate4, votesCount4);
     printf("\n Spoiled Votes - %d\n", spoiledtvotes); 
 }
 
@@ -43,19 +64,22 @@ void getLeadingCandidate() {
     printf("\n\n #### Leading Candidate ####\n\n");
     
     if(votesCount1 > votesCount2 && votesCount1 > votesCount3 && votesCount1 > votesCount4)
-        printf("[%s]\n", CANDIDATE1);
+        printf("[%s]\n", candidate1);
     else if(votesCount2 > votesCount1 && votesCount2 > votesCount3 && votesCount2 > votesCount4)
-        printf("[%s]\n", CANDIDATE2);
+        printf("[%s]\n", candidate2);
     else if(votesCount3 > votesCount1 && votesCount3 > votesCount2 && votesCount3 > votesCount4)
-        printf("[%s]\n", CANDIDATE3);
+        printf("[%s]\n", candidate3);
     else if(votesCount4 > votesCount1 && votesCount4 > votesCount2 && votesCount4 > votesCount3)
-        printf("[%s]\n", CANDIDATE4);
+        printf("[%s]\n", candidate4);
     else
         printf("----- Warning: No-win situation! ----\n");
 }
 
 int main() {
     int choice;
+
+    // Get candidate names from the user
+    setCandidateNames();
 
     do {
         printf("\n\n ###### Welcome to Voting 2024 #####");
